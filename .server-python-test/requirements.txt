@@ -20,7 +20,7 @@ grpcio==1.60.0
 grpcio-status==1.60.0
 idna==3.6
 itsdangerous==2.1.2
-Jinja2==3.1.2
+Jinja2==3.1.5
 jsonpatch==1.33
 jsonpointer==2.4
 langchain==0.0.350
