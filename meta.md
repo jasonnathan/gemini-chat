@@ -1,4 +1,5 @@
 Oh my God, I totally and completely forgot about this project!! Please generate good notes I'd write for myself. This was so early on too :()
+
 # META: GEMINI-CHAT
 
 ## Folder Structure
@@ -11,6 +12,7 @@ Oh my God, I totally and completely forgot about this project!! Please generate 
 
 1 directory, 3 files
 ```
+
 ## File: main.py
 
 ```py
@@ -32,6 +34,7 @@ to_markdown(result.content)
 ```
 
 ## File: .server-python-test/app/api.py
+
 ```python
 import os
 import google.generativeai as genai
@@ -51,7 +54,9 @@ def generate_content(prompt: str, model_name: str = 'gemini-pro'):
     response = generative_model.generate_content(prompt)
     return response.text
 ```
+
 ## File: .server-python-test/app/chatbot.py
+
 ```python
 # Imports from langchain and google-generativeai should be organized at the top of the file
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
@@ -142,7 +147,9 @@ def invoke_runnable_map(question: str, retriever):
 # Assuming you have the retrieval mechanism and other necessary pieces ready, further refactoring would focus on the chain 
 # of operations that transforms an incoming question into a response, which could involve the steps mocked out above.
 ```
+
 ## File: .server-python-test/app/embedder.py
+
 ```python
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain.vectorstores import DocArrayInMemorySearch
@@ -161,7 +168,9 @@ def get_relevant_documents(vectorstore, query: str):
     retriever = vectorstore.as_retriever()
     return retriever.get_relevant_documents(query)
 ```
+
 ## File: .server-python-test/app/operations.py
+
 ```python
 # server/app/chain_operations.py
 
@@ -260,7 +269,9 @@ def invoke_chain(question: str, vectorstore: DocArrayInMemorySearch, chain: Runn
     
     return response
 ```
+
 ## File: .server-python-test/app/retriever.py
+
 ```python
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnableMap
@@ -288,7 +299,9 @@ def make_retrievable(retriever, template_str: str):
     
     return chain_context
 ```
+
 ## File: .server-python-test/test/test_api.py
+
 ```python
 import unittest
 import os
@@ -327,9 +340,34 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
+
+## FIle: ./list.sh
+
+```
+#!/bin/bash
+
+function list_structure() {
+  local dir="$1"
+  for entry in "$dir"/*; do
+    if [[ -d "$entry" && "$entry" != "venv" ]]; then
+      if [[ ! "$entry" =~ (lib|bin|include) ]]; then
+        echo "│  $entry"
+        list_structure "$entry"
+      fi
+    else
+      echo "└── $entry"
+    fi
+  done
+}
+
+list_structure .
+```
+
 ## Git Repository
 
 ```plaintext
 origin	https://github.com/jasonnathan/gemini-chat.git (fetch)
 origin	https://github.com/jasonnathan/gemini-chat.git (push)
 ```
+
+
